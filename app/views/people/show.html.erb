@@ -1,10 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= notice %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
 
-<%= render @person %>
+<div class="mb-3">
+  <%= link_to "← Back to people", people_path, class: "btn btn-outline-secondary" %>
+</div>
 
-<div>
-  <%= link_to "Edit this person", edit_person_path(@person) %> |
-  <%= link_to "Back to people", people_path %>
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="card-title mb-4"><%= @person.first_name %> <%= @person.last_name %></h1>
 
-  <%= button_to "Destroy this person", @person, method: :delete %>
+        <% if @person.birthday.present? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">Birthday</h6>
+            <p><%= @person.birthday.strftime("%B %-d, %Y") %></p>
+          </div>
+        <% end %>
+
+        <% if @person.address.present? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">Address</h6>
+            <p><%= simple_format @person.address %></p>
+          </div>
+        <% end %>
+
+        <% if @person.notes.present? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">Notes</h6>
+            <p><%= @person.notes %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+        <%= link_to "Edit", edit_person_path(@person), class: "btn btn-primary" %>
+        <%= button_to "Delete", @person, method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  </div>
 </div>

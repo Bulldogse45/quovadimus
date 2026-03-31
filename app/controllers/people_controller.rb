@@ -65,6 +65,6 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.expect(person: [ :first_name, :last_name, :notes ])
+      params.expect(person: [ :first_name, :last_name, :birthday, :address, :notes ])
     end
 end

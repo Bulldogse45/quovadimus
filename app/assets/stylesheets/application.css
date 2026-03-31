@@ -8,3 +8,22 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+:root {
+  --bs-primary: #4A0E78;
+  --bs-primary-rgb: 74, 14, 120;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+  background-color: #3a0b5e;
+  border-color: #3a0b5e;
+}
+
+.bg-primary {
+  background-color: var(--bs-primary) !important;
+}
