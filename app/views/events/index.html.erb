@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Events" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Events</h1>
+  <%= link_to "New event", new_event_path, class: "btn btn-primary" %>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="events">
+  <% @events.each do |event| %>
+    <div class="col">
+      <div class="card h-100" id="<%= dom_id event %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.name %></h5>
+          <% if event.location.present? %>
+            <p class="card-text text-muted mb-1"><small><%= event.location %></small></p>
+          <% end %>
+          <% if event.time.present? %>
+            <p class="card-text text-muted mb-1"><small><%= event.time.strftime("%B %-d, %Y at %-I:%M %p") %></small></p>
+          <% end %>
+          <% if event.attending? %>
+            <span class="badge bg-success">Attending</span>
+          <% else %>
+            <span class="badge bg-secondary">Not attending</span>
+          <% end %>
+        </div>
+        <div class="card-footer bg-primary">
+          <%= link_to "View", event, class: "btn btn-sm btn-light" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

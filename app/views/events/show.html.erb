@@ -1,0 +1,60 @@
+<% if notice.present? %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= notice %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<div class="mb-3">
+  <%= link_to "← Back to events", events_path, class: "btn btn-outline-secondary" %>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="card-title mb-4"><%= @event.name %></h1>
+
+        <% if @event.location.present? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">Location</h6>
+            <p><%= @event.location %></p>
+          </div>
+        <% end %>
+
+        <% if @event.time.present? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">Time</h6>
+            <p><%= @event.time.strftime("%B %-d, %Y at %-I:%M %p") %></p>
+          </div>
+        <% end %>
+
+        <% if @event.people.any? %>
+          <div class="mb-4">
+            <h6 class="text-muted text-uppercase">People</h6>
+            <ul class="list-group list-group-flush">
+              <% @event.people.each do |person| %>
+                <li class="list-group-item px-0">
+                  <%= link_to "#{person.first_name} #{person.last_name}", person %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-4">
+          <h6 class="text-muted text-uppercase">Attending</h6>
+          <% if @event.attending? %>
+            <span class="badge bg-success">Yes</span>
+          <% else %>
+            <span class="badge bg-secondary">No</span>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-primary" %>
+        <%= button_to "Delete", @event, method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure?" } %>
+      </div>
+    </div>
+  </div>
+</div>

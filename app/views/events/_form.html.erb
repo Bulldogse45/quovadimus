@@ -1,0 +1,46 @@
+<%= form_with(model: event) do |form| %>
+  <% if event.errors.any? %>
+    <div class="alert alert-danger">
+      <h5 class="alert-heading"><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h5>
+      <ul class="mb-0">
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :location, class: "form-label" %>
+    <%= form.text_field :location, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :time, class: "form-label" %>
+    <%= form.datetime_field :time, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :person_ids, "People", class: "form-label" %>
+    <%= form.collection_check_boxes :person_ids, Person.order(:first_name, :last_name), :id, ->(p) { "#{p.first_name} #{p.last_name}" } do |b| %>
+      <div class="form-check">
+        <%= b.check_box class: "form-check-input" %>
+        <%= b.label class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3 form-check">
+    <%= form.checkbox :attending, class: "form-check-input" %>
+    <%= form.label :attending, class: "form-check-label" %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

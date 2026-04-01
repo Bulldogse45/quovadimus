@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location: MyString
+  time: 2026-03-31 13:05:46
+  attending: false
+
+two:
+  name: MyString
+  location: MyString
+  time: 2026-03-31 13:05:46
+  attending: false
