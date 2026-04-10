@@ -1,24 +1,9 @@
-# README
+Install Ruby 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+sudo apt update
+sudo apt install build-essential rustc libssl-dev libyaml-dev zlib1g-dev libgmp-dev git
+curl https://mise.run | sh
+echo 'eval "$(~/.local/bin/mise activate)"' >> ~/.bashrc
+source ~/.bashrc
+mise use -g ruby@3
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
